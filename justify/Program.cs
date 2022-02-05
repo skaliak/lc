@@ -27,6 +27,7 @@ namespace justify
 
             justifier = new Justifier(words, maxWidth);
             result = justifier.Justify();
+            System.Console.WriteLine();
             foreach(var line in result)
             {
                 System.Console.WriteLine(line);
@@ -37,6 +38,7 @@ namespace justify
 
             justifier = new Justifier(words, maxWidth);
             result = justifier.Justify();
+            System.Console.WriteLine();
             foreach(var line in result)
             {
                 System.Console.WriteLine(line);
@@ -68,8 +70,8 @@ namespace justify
 
                 if (lastWord == null)
                     yield return RenderLine(line, true);  //we reached the last line
-
-                yield return RenderLine(line, false);
+                else
+                    yield return RenderLine(line, false);
             }
             if (lastWord != null)
             {
@@ -100,7 +102,7 @@ namespace justify
         {
             if (line.Count == 1)
             {
-                return MaxWidth - line.Count;
+                return MaxWidth - line[0].Length;
             }
 
             return MaxWidth - GetWidth(line, false);
